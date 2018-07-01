@@ -1,14 +1,17 @@
 import React from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import { Storage } from 'aws-amplify';
+import { S3Image } from 'aws-amplify-react';
 
 class UploadForm extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
 
         this.state = {
-            value: ''
+            value: '',
+            fileName: null
         };
     }
 
@@ -21,8 +24,21 @@ class UploadForm extends React.Component {
         return null;
     }
 
-    handleChange(e) {
-        this.setState({ value: e.target.value });
+    isValid() {
+        return this.getValidationState() === 'success'
+    }
+
+    handleUpload(e) {
+        const me = this, file = e.target.files && e.target.files.length ?
+            e.target.files[0] : null;
+        me.setState({ value: e.target.value }, () => {
+            if (me.isValid() && file) {
+                const name = file.name;
+                Storage.put(name, file).then(() => {
+                    this.setState({ fileName: name });
+                });
+            }
+        });
     }
 
     handleClear() {
@@ -42,10 +58,11 @@ class UploadForm extends React.Component {
                         type="file"
                         value={this.state.value}
                         placeholder="Select an image to upload"
-                        onChange={this.handleChange}
+                        onChange={this.handleUpload}
                     />
                     <FormControl.Feedback onClick={this.handleClear.bind(this)}/>
-                    <HelpBlock>Please select a jpg/jpeg image.</HelpBlock>
+                    <HelpBlock>The file should be a jpg/jpeg image.</HelpBlock>
+                    { this.state && this.state.fileName && <S3Image path={this.state.fileName} /> }
                 </FormGroup>
             </form>
         );

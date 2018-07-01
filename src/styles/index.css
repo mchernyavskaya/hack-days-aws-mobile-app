@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.center-div {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.form-group .form-control-feedback {
+    top: 0;
+    right: 44px;
+    pointer-events: initial; /* or - auto // or -  unset  */
+}
