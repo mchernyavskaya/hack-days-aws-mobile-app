@@ -14,3 +14,7 @@ body {
     right: 44px;
     pointer-events: initial; /* or - auto // or -  unset  */
 }
+
+.s3-image img {
+    width: 100%;
+}

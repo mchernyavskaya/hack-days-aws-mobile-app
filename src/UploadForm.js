@@ -2,6 +2,7 @@ import React from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import { Storage } from 'aws-amplify';
 import { S3Image } from 'aws-amplify-react';
+import ImageProcessingService from './services/imageProcessingService.js';
 
 class UploadForm extends React.Component {
     constructor(props, context) {
@@ -36,6 +37,7 @@ class UploadForm extends React.Component {
                 const name = file.name;
                 Storage.put(name, file).then(() => {
                     this.setState({ fileName: name });
+                    ImageProcessingService.initiateProcessing(name, 'rotate');
                 });
             }
         });
@@ -60,9 +62,15 @@ class UploadForm extends React.Component {
                         placeholder="Select an image to upload"
                         onChange={this.handleUpload}
                     />
+
                     <FormControl.Feedback onClick={this.handleClear.bind(this)}/>
                     <HelpBlock>The file should be a jpg/jpeg image.</HelpBlock>
-                    { this.state && this.state.fileName && <S3Image path={this.state.fileName} /> }
+
+                    { this.state && this.state.fileName &&
+                    <div className="s3-image">
+                        <S3Image path={this.state.fileName} />
+                    </div>
+                    }
                 </FormGroup>
             </form>
         );

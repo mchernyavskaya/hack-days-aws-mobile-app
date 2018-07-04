@@ -1,21 +1,135 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "2018-07-04T13:34:49Z",
+        "version": "2018-07-04T17:17:22Z",
         "title": "opencv-queue-invoke-api"
     },
-    "host": "t1lckgfwr8.execute-api.us-east-1.amazonaws.com",
+    "host": "fl9wpsxzkk.execute-api.eu-central-1.amazonaws.com",
     "basePath": "/prod",
     "schemes": [
         "https"
     ],
     "paths": {
-        "/v1/purge": {
+        "/v1/processimage": {
             "post": {
                 "consumes": [
-                    "application/json",
-                    "text/plain"
+                    "application/json"
                 ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "Empty",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "options": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/processingresult": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "UID",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "options": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/purge": {
+            "post": {
                 "produces": [
                     "application/json"
                 ],
@@ -169,6 +283,16 @@
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "Empty",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        }
+                    }
                 ],
                 "responses": {
                     "200": {
