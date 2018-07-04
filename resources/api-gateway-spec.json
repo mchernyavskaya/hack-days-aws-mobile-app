@@ -34,6 +34,25 @@
                             "$ref": "#/definitions/Empty"
                         }
                     }
+                },
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::973520824978:role/APIGatewaySQSOpenCV",
+                    "uri": "arn:aws:apigateway:eu-central-1:sqs:path/973520824978/opencv-image-processing-queue",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200"
+                        }
+                    },
+                    "requestParameters": {
+                        "integration.request.querystring.Version": "'2012-11-05'",
+                        "integration.request.querystring.RequestHandle": "method.request.body",
+                        "integration.request.header.Accept": "'application/json'",
+                        "integration.request.querystring.Action": "'DeleteMessage'",
+                        "integration.request.header.Content-Type": "'text/plain'"
+                    },
+                    "passthroughBehavior": "never",
+                    "httpMethod": "GET",
+                    "type": "aws"
                 }
             },
             "delete": {
@@ -55,6 +74,24 @@
                             "$ref": "#/definitions/Empty"
                         }
                     }
+                },
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::973520824978:role/APIGatewaySQSOpenCV",
+                    "uri": "arn:aws:apigateway:eu-central-1:sqs:path/973520824978/opencv-image-processing-queue",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200"
+                        }
+                    },
+                    "requestParameters": {
+                        "integration.request.querystring.ReceiptHandle": "method.request.querystring.ReceiptHandle",
+                        "integration.request.querystring.Version": "'2012-11-05'",
+                        "integration.request.header.Accept": "'application/json'",
+                        "integration.request.querystring.Action": "'DeleteMessage'"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "httpMethod": "GET",
+                    "type": "aws"
                 }
             },
             "options": {
@@ -82,6 +119,23 @@
                             }
                         }
                     }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "type": "mock"
                 }
             }
         },
@@ -111,6 +165,27 @@
                             "$ref": "#/definitions/Empty"
                         }
                     }
+                },
+                "x-amazon-apigateway-request-validator": "Validate query string parameters and headers",
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::973520824978:role/APIGatewaySQSOpenCV",
+                    "uri": "arn:aws:apigateway:eu-central-1:sqs:path/973520824978/opencv-image-processing-queue",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200"
+                        }
+                    },
+                    "requestParameters": {
+                        "integration.request.querystring.Version": "'2012-11-05'",
+                        "integration.request.querystring.MaxNumberOfMessages": "method.request.querystring.MaxNumberOfMessages",
+                        "integration.request.header.Accept": "'application/json'",
+                        "integration.request.querystring.VisibilityTimeout": "method.request.querystring.VisibilityTimeout",
+                        "integration.request.querystring.Action": "'ReceiveMessage'",
+                        "integration.request.header.Content-Type": "'application/json'"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "httpMethod": "GET",
+                    "type": "aws"
                 }
             },
             "options": {
@@ -138,6 +213,23 @@
                             }
                         }
                     }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "type": "mock"
                 }
             }
         },
@@ -161,6 +253,24 @@
                             "$ref": "#/definitions/Empty"
                         }
                     }
+                },
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::973520824978:role/APIGatewaySQSOpenCV",
+                    "uri": "arn:aws:apigateway:eu-central-1:sqs:path/973520824978/opencv-image-processing-queue",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200"
+                        }
+                    },
+                    "requestParameters": {
+                        "integration.request.querystring.MessageBody": "method.request.querystring.MessageBody",
+                        "integration.request.header.Accept": "'application/json'",
+                        "integration.request.querystring.Action": "'SendMessage'",
+                        "integration.request.header.Content-Type": "'application/json'"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "httpMethod": "GET",
+                    "type": "aws"
                 }
             },
             "post": {
@@ -177,6 +287,25 @@
                             "$ref": "#/definitions/Empty"
                         }
                     }
+                },
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::973520824978:role/APIGatewaySQSOpenCV",
+                    "uri": "arn:aws:apigateway:eu-central-1:sqs:path/973520824978/opencv-image-processing-queue",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200"
+                        }
+                    },
+                    "requestParameters": {
+                        "integration.request.header.Accept": "'application/json'",
+                        "integration.request.header.Content-Type": "'application/x-www-form-urlencoded'"
+                    },
+                    "requestTemplates": {
+                        "application/json": "Action=SendMessage&MessageBody=$util.urlEncode($util.escapeJavaScript($input.json('$')))"
+                    },
+                    "passthroughBehavior": "never",
+                    "httpMethod": "POST",
+                    "type": "aws"
                 }
             },
             "options": {
@@ -204,6 +333,23 @@
                             }
                         }
                     }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "type": "mock"
                 }
             }
         }
@@ -212,6 +358,12 @@
         "Empty": {
             "type": "object",
             "title": "Empty Schema"
+        }
+    },
+    "x-amazon-apigateway-request-validators": {
+        "Validate query string parameters and headers": {
+            "validateRequestParameters": true,
+            "validateRequestBody": false
         }
     }
 }
