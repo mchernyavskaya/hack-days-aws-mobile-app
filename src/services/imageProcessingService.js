@@ -40,8 +40,18 @@ let ImageProcessingService = {
                 (error) => {
                     console && console.error('request failed', error);
                 }
-            )
-        ;
+            );
+        return UID;
+    },
+
+    async checkImageReady(operation, UID) {
+        let rootUrl = config.awsmobile.publicBucket;
+        const response = await fetch(rootUrl + this.processedFileName(operation, UID));
+        return response.statusCode >= 200 && response.statusCode < 300;
+    },
+
+    processedFileName(operation, UID) {
+        return `${UID}_processed.png`;
     }
 };
 export default ImageProcessingService;
