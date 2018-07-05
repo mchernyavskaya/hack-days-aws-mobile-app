@@ -158,6 +158,11 @@ class UploadForm extends React.Component {
                         <S3Image path={checkResultStateProp}/>
                     </div>
                     }
+                    {!checkResultStateProp &&
+                    <div>
+                        Looks like the magic hasn't been done yet.
+                    </div>
+                    }
                 </div>
             </div>
         </div>)
